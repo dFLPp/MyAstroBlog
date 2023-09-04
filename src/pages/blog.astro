@@ -1,8 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "Blog";
-const allPosts = await Astro.glob("./posts/*.md");
 import CardGrid from "../components/CardGrid.astro";
+
+const pageTitle = "Blog";
+const allPosts = await getCollection("posts");
 ---
 
 <BaseLayout pageTitle={pageTitle}>

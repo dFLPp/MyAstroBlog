@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostsLayout.astro
 title: "Meu segundo post"
 pubDate: 2023-09-04
 description: "Glugose nos doces"

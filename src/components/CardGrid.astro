@@ -7,9 +7,9 @@ let { posts } = Astro.props;
     {
         posts.map((post) => (
             <Card
-                url={post.url}
-                title={post.frontmatter.title}
-                desc={post.frontmatter.description}
+                url={"/posts/" + post.slug}
+                title={post.data.title}
+                desc={post.data.description}
             />
         ))
     }

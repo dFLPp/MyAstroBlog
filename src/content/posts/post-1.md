@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostsLayout.astro
 title: "Meu primeiro post"
 pubDate: 2023-09-04
 description: "Frutose nos doces"
