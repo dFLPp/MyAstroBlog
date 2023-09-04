@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Blog";
+const allPosts = await Astro.glob("./posts/*.md");
+import CardGrid from "../components/CardGrid.astro";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <h1>Blog page</h1>
+
+    <h2>Ultimos Posts</h2>
+    <CardGrid posts={allPosts} />
+
+    <h2>Procurar por tags</h2>
+    <a href="/tags">procurar</a>
+</BaseLayout>
+
+<style>
+    a {
+        background-color: black;
+        color: white;
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,30 @@
+---
+let { title, desc, url } = Astro.props;
+---
+
+<div class="card">
+    <h1>{title}</h1>
+    <p class="desc">{desc}</p>
+    <a href={url}>Ver</a>
+</div>
+
+<style>
+    .card {
+        border: 1px solid black;
+        text-align: center;
+        display: grid;
+        grid-template-rows: 1fr 1fr 0.5fr;
+    }
+    h1 {
+        font-size: 1.3em;
+        margin-bottom: -0.3em;
+    }
+    p {
+        font-size: 1em;
+    }
+    a {
+        text-decoration: none;
+        background-color: black;
+        color: white;
+    }
+</style>

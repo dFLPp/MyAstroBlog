@@ -1,0 +1,15 @@
+---
+import { links } from "../data/data.js";
+import ThemeIcon from "./ThemeIcon.astro";
+---
+
+<div class="navbar">
+  {
+    links.map((link, i) => (
+      <a class="nav-links" href={link.href}>
+        {link.name}
+      </a>
+    ))
+  }
+  <ThemeIcon />
+</div>

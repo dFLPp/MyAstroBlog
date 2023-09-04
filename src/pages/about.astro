@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "About";
+const skills = ["HTML", "CSS", "Javascript"];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h1>About page</h1>
+  <h2>Minhas habilidades</h2>
+  <ul>
+    {skills.map((skill, i) => <li class="skill">{skill}</li>)}
+  </ul>
+</BaseLayout>
