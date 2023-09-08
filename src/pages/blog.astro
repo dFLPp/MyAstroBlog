@@ -5,6 +5,12 @@ import CardGrid from "../components/CardGrid.astro";
 
 const pageTitle = "Blog";
 const allPosts = await getCollection("posts");
+const links = await getCollection("links");
+
+let link = "";
+links.map((l) => {
+    if (l.id === "tags") link = l.data.href;
+});
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -14,7 +20,7 @@ const allPosts = await getCollection("posts");
     <CardGrid posts={allPosts} />
 
     <h2>Procurar por tags</h2>
-    <a href="/MyAstroBlog/tags">procurar</a>
+    <a href={link}>procurar</a>
 </BaseLayout>
 
 <style>

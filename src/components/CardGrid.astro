@@ -1,13 +1,21 @@
 ---
 import Card from "./Card.astro";
-let { posts } = Astro.props;
+import { getCollection } from "astro:content";
+
+const { posts } = Astro.props;
+const links = await getCollection("links");
+
+let link = "";
+links.map((elem) => {
+    if (elem.id === "posts") link = elem.data.href;
+});
 ---
 
 <div class="container">
     {
         posts.map((post) => (
             <Card
-                url={"/posts/" + post.slug}
+                url={link + post.slug}
                 title={post.data.title}
                 desc={post.data.description}
             />

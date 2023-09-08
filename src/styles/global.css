@@ -13,7 +13,7 @@ html.dark {
 
 .dark .nav-links a {
     color: #FAF0E6;
-    border: 1px solid #FAF0E6;
+    text-decoration: none;
 }
 
 ul {

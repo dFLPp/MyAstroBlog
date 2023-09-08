@@ -1,15 +1,22 @@
 ---
-import { links } from "../data/data.js";
+import { getCollection } from "astro:content";
 import ThemeIcon from "./ThemeIcon.astro";
+const links = await getCollection("links");
 ---
 
-<div class="navbar">
-  {
-    links.map((link, i) => (
-      <a class="nav-links" href={link.href}>
-        {link.name}
-      </a>
-    ))
-  }
+<nav class="navbar">
+  <ul>
+    {
+      links.map((link) =>
+        link.id !== "posts" ? (
+          <li class="nav-links">
+            <a href={link.data.href}>{link.data.name}</a>
+          </li>
+        ) : (
+          ""
+        ),
+      )
+    }
+  </ul>
   <ThemeIcon />
-</div>
+</nav>

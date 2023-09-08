@@ -1,1 +1,0 @@
-export const links =  [{name: "home", href: "/MyAstroBlog"}, {name: "about", href: "/MyAstroBlog/about"}, {name: "blog", href: "/MyAstroBlog/blog"}]
