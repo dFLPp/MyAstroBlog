@@ -18,19 +18,28 @@ body {
 img {
     width: 100%;
     height: 300px;
-    border: 1px solid black;
+    border: 1px solid #352F44;
     margin: 10px 0 10px 0;
 }
 
-h1 {
-    margin: 1rem 0;
-    font-size: 2.5rem;
+a {
+    font-size: 1.1em;
 }
 
 p {
-    font-size: 1.1em;
-    font-weight: 100;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.3em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.7em;
+}
+
+h1 {
+    font-size: 1.9em;
 }
 
 ul {
@@ -40,19 +49,4 @@ ul {
 li {
     display: inline;
     padding: .2em;
-    border: 1px solid black;
-}
-
-.text {
-    font-size: 1.1;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 100;
-}
-
-a {
-    text-decoration: none;
-}
-
-ul {
-    list-style: none;
 }
