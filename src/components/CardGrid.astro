@@ -1,43 +1,19 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Card from "./Card.astro";
-import { getCollection } from "astro:content";
-
-const { posts } = Astro.props;
-const links = await getCollection("links");
-
-let link = "";
-links.map((elem) => {
-    if (elem.id === "posts") link = elem.data.href;
-});
+const { contents, link } = Astro.props;
 ---
 
-<div class="container">
+<ul>
     {
-        posts.map((post) => (
-            <Card
-                url={link + post.slug}
-                title={post.data.title}
-                desc={post.data.description}
-            />
-        ))
+        //typescript...
+        contents.map((content: any) => <Card content={content} link={link} />)
     }
-</div>
+</ul>
 
 <style>
-    .container {
+    ul {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-    }
-    @media screen and (min-width: 636px) {
-        .container {
-            display: grid;
-            display: grid;
-
-            grid-template-columns: repeat(auto-fill, 250px);
-            grid-auto-rows: auto;
-            grid-gap: 1rem;
-        }
+        flex-wrap: wrap;
     }
 </style>

@@ -1,0 +1,135 @@
+---
+import { LINKS } from "../../../config";
+import type { CollectionEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import { getEntries, getCollection } from "astro:content";
+
+export type returnType = {
+    params: {
+        pack: string;
+        unit: string;
+    };
+    props: { unit: CollectionEntry<"units"> };
+};
+
+export const getStaticPaths = async () => {
+    const packs = await getCollection("packs");
+
+    const paths = await Promise.all(
+        packs.map(async (pack) => {
+            let relatedUnits = await getEntries(pack.data.ownUnits);
+            return relatedUnits.map((unit) => {
+                return {
+                    params: { pack: pack.slug, unit: unit.slug },
+                    props: { unit },
+                };
+            });
+        }),
+    );
+
+    // @ts-ignore
+    return [].concat(...paths);
+};
+
+const { unit, pack } = Astro.props;
+const { Content } = await unit.render();
+const link = LINKS.find((link) => link.name === "packs");
+---
+
+<Base>
+    <div class="unitParentGrid">
+        <div class="div1"></div>
+        <article class="div2">
+            <p>
+                {
+                    unit.data.prev === "start" ? (
+                        <a href={link ? link.href : "#"}>Voltar ao início</a>
+                    ) : (
+                        <a href={unit.data.prev.slug}>Unit anterior</a>
+                    )
+                }
+            </p>
+            <section class="unitContainer">
+                <Content />
+            </section>
+            <p class="alignRight">
+                {
+                    unit.data.next === "end" ? (
+                        <a href={link ? link.href : "#"}>Voltar ao início</a>
+                    ) : (
+                        <a href={unit.data.next.slug}>Próxima unit</a>
+                    )
+                }
+            </p>
+        </article>
+        <div class="div3"></div>
+    </div>
+</Base>
+
+<style>
+    .unitParentGrid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 1em;
+    }
+
+    .unitContainer {
+        border: 2px dashed;
+        margin: 1em;
+        padding: 3em;
+        border-radius: 12px;
+        font-size: large;
+
+        h1 {
+            font-size: 2em;
+            line-height: 2em;
+        }
+
+        h2 {
+            font-size: 1.7em;
+            line-height: 1.7em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            line-height: 1.5em;
+        }
+
+        h4 {
+            font-size: 1.3em;
+            line-height: 1.3em;
+        }
+
+        p {
+            font-size: 0.9em;
+            line-height: 1.5em;
+        }
+
+        ul {
+            list-style: circle;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    .div1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .div2 {
+        grid-area: 1 / 2 / 2 / 5;
+        a {
+            text-decoration: underline;
+        }
+    }
+    .div3 {
+        grid-area: 1 / 5 / 2 / 6;
+    }
+    .alignRight {
+        text-align: right;
+    }
+</style>

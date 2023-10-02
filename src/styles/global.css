@@ -6,114 +6,45 @@
     padding: 0;
 }
 
+:root {
+    --bg-dark: black;
+    --bg-light: white;
+
+    --ft-dark: white;
+    --ft-light: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
 html {
-    background-color: #FAF0E6;
-    color: #352F44;
+    background-color: var(--bg-light);
+    color: var(--ft-light);
     font-family: monospace;
+    line-height: 1.5em;
+
+    a {
+        color: var(--ft-light);
+    }
+
 }
 
 html.dark {
-    background-color: #352F44;
-    color: #FAF0E6;
-}
+    background-color: var(--bg-dark);
+    color: var(--ft-dark);
+    font-family: monospace;
+    line-height: 1.5em;
 
-a {
-    text-decoration: none;
-    color: #352F44;
-}
-
-.dark a {
-    text-decoration: none;
-    color: #FAF0E6;
-}
-
-a {
-    font-size: 1.1em;
-}
-
-p {
-    font-size: 1.3em;
-}
-
-h3 {
-    font-size: 1.5em;
-}
-
-h2 {
-    font-size: 1.7em;
-}
-
-h1 {
-    font-size: 1.9em;
-}
-
-.navbar {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    color: #352F44;
-    text-align: center;
-}
-
-.navbar.dark {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    color: #FAF0E6;
-    text-align: center;
-}
-
-
-.expanded {
-    display: none;
-}
-
-.hamburguer {
-    display: block;
-    cursor: pointer;
-    position: fixed;
-    right: 0;
-    top: 0;
-    padding: 1em;
-}
-
-.hamburguer span {
-    background-color: #352F44;
-}
-
-.hamburguer span.black {
-    background-color: #FAF0E6;
-}
-
-
-body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
-    line-height: 1.5;
-    text-align: center;
-}
-
-@media screen and (min-width: 636px) {
-
-    .navbar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        margin-bottom: 10rem;
-        margin-top: 2rem;
+    a {
+        color: var(--ft-dark);
     }
-
-    .hamburguer {
-        display: none;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-        min-height: 100vh;
-    }
-
 }

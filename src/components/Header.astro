@@ -1,0 +1,47 @@
+---
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+import { LINKS } from "../config";
+---
+
+<nav>
+    <ul>
+        {
+            LINKS.map((link) => (
+                <li>
+                    <a href={link.href}>{link.name}</a>
+                </li>
+            ))
+        }
+    </ul>
+    <ThemeSwitcher />
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em;
+        border-bottom: 1px solid;
+    }
+
+    nav > :not(:last-child) {
+        margin-right: auto;
+    }
+
+    ul {
+        margin-left: 10em;
+        display: flex;
+        gap: 1em;
+        a {
+            font-size: 1.5em;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        ul {
+            margin-left: 5em;
+        }
+    }
+</style>

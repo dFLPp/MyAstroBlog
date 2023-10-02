@@ -1,0 +1,64 @@
+---
+import Base from "../../layouts/Base.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import { getEntries, getCollection } from "astro:content";
+import { LINKS } from "../../config";
+
+export const getStaticPaths = async () => {
+    const packs = await getCollection("packs");
+    return packs.map((pack) => ({
+        params: { slug: pack.slug },
+        props: { pack },
+    }));
+};
+
+const { slug } = Astro.params;
+const { pack } = Astro.props;
+const units = await getEntries(pack.data.ownUnits);
+
+const link = LINKS.find((link) => link.name === "packs");
+---
+
+<Base>
+    <article>
+        <h1>Units from <span class="highlight">{slug}</span></h1>
+        <ul>
+            {
+                units.map((unit, i) => (
+                    <li>
+                        <a
+                            href={
+                                link ? link.href + slug + "/" + unit.slug : "#"
+                            }
+                        >
+                            {i + 1} - {unit.data.title}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </article>
+</Base>
+
+<style>
+    article {
+        max-width: max(80vw, 200em);
+        padding: 1em;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 5em;
+        li {
+            font-size: 1.3em;
+        }
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 1em;
+    }
+    .highlight {
+        border-bottom: 1px solid;
+    }
+</style>

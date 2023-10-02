@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "my-astro-blog",
+  "version": "1.0.0",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.0.8"
+    "astro": "^3.0.12"
   }
 }

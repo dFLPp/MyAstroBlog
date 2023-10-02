@@ -1,0 +1,47 @@
+---
+import Base from "../../layouts/Base.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import { getEntries, getCollection } from "astro:content";
+import { LINKS } from "../../config";
+
+export const getStaticPaths = async () => {
+    const trails = await getCollection("trails");
+    return trails.map((trial) => ({
+        params: { slug: trial.slug },
+        props: { trial },
+    }));
+};
+
+const { slug } = Astro.params;
+const { trial } = Astro.props;
+const packs = await getEntries(trial.data.ownPacks);
+const link = LINKS.find((link) => link.name === "packs");
+---
+
+<Base>
+    <article>
+        <h1>Packs from <span class="highlight">{slug}</span></h1>
+        <CardGrid contents={packs} link={link} />
+    </article>
+</Base>
+
+<style>
+    article {
+        max-width: max(80vw, 200em);
+        padding: 1em;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 5em;
+        font-size: larger;
+    }
+
+    h1 {
+        margin-bottom: 1em;
+    }
+
+    .highlight {
+        border-bottom: 1px solid;
+    }
+</style>

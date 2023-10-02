@@ -1,0 +1,42 @@
+---
+import { SOCIALS } from "../config";
+import socialIcons from "../assets/socialIcons";
+---
+
+<footer>
+    <ul>
+        {
+            SOCIALS.map((social) => (
+                <li>
+                    <a href={social.href}>
+                        {socialIcons.hasOwnProperty(social.name) ? (
+                            <Fragment
+                                set:html={
+                                    // @ts-ignore
+                                    socialIcons[social.name]
+                                }
+                            />
+                        ) : (
+                            ""
+                        )}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+    <p>Todos os direitos reservados</p>
+</footer>
+
+<style>
+    footer {
+        padding: 1em;
+        text-align: center;
+        border-top: 1px solid;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1em;
+    }
+</style>

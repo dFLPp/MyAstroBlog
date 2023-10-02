@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import { getCollection } from "astro:content";
+import { LINKS } from "../../config";
+
+const packs = await getCollection("packs");
+const link = LINKS.find((link) => link.name === "packs");
+---
+
+<Base>
+	<article>
+		<div class="info">
+			<h1>Packs</h1>
+			<p>Todas os blocos de conhecimento</p>
+		</div>
+		<div class="cardContainer">
+			<CardGrid contents={packs} link={link} />
+		</div>
+	</article>
+</Base>
+
+<style>
+	article {
+		max-width: max(80vw, 200em);
+		padding: 1em;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 5em;
+		font-size: larger;
+	}
+
+	.info {
+		text-align: center;
+		padding: 1em;
+		p {
+			padding: 1em;
+		}
+	}
+</style>
