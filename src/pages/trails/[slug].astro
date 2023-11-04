@@ -6,16 +6,16 @@ import { LINKS } from "../../config";
 
 export const getStaticPaths = async () => {
     const trails = await getCollection("trails");
-    return trails.map((trial) => ({
-        params: { slug: trial.slug },
-        props: { trial },
+    return trails.map((trail) => ({
+        params: { slug: trail.slug },
+        props: { trail },
     }));
 };
 
 const { slug } = Astro.params;
-const { trial } = Astro.props;
-const packs = await getEntries(trial.data.ownPacks);
-const link = LINKS.find((link) => link.name === "packs");
+const { trail } = Astro.props;
+const packs = await getEntries(trail.data.ownPacks);
+const link = LINKS.find((link) => link.name === "home");
 ---
 
 <Base>

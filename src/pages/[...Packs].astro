@@ -1,27 +1,26 @@
 ---
-import Base from "../../layouts/Base.astro";
-import CardGrid from "../../components/CardGrid.astro";
+import Base from "../layouts/Base.astro";
 import { getEntries, getCollection } from "astro:content";
-import { LINKS } from "../../config";
+import { LINKS } from "../config";
 
 export const getStaticPaths = async () => {
     const packs = await getCollection("packs");
     return packs.map((pack) => ({
-        params: { slug: pack.slug },
+        params: { Packs: pack.slug },
         props: { pack },
     }));
 };
 
-const { slug } = Astro.params;
+const { packs } = Astro.params;
 const { pack } = Astro.props;
 const units = await getEntries(pack.data.ownUnits);
 
-const link = LINKS.find((link) => link.name === "packs");
+const link = LINKS.find((link) => link.name === "home");
 ---
 
 <Base>
     <article>
-        <h1>Units from <span class="highlight">{slug}</span></h1>
+        <h1>Units from <span class="highlight">{packs}</span></h1>
         <ul>
             {
                 units.map((unit, i) => (

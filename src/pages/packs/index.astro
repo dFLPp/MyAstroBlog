@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import { LINKS } from "../../config";
 
 const packs = await getCollection("packs");
-const link = LINKS.find((link) => link.name === "packs");
+const link = LINKS.find((link) => link.name === "home");
 ---
 
 <Base>

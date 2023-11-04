@@ -1,12 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Card from "./Card.astro";
 const { contents, link } = Astro.props;
 ---
 
 <ul>
     {
-        //typescript...
         contents.map((content: any) => <Card content={content} link={link} />)
     }
 </ul>
@@ -15,5 +13,8 @@ const { contents, link } = Astro.props;
     ul {
         display: flex;
         flex-wrap: wrap;
+    }
+    a:visited{
+        color: inherit;
     }
 </style>

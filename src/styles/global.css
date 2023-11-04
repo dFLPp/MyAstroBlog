@@ -32,19 +32,19 @@ html {
     font-family: monospace;
     line-height: 1.5em;
 
-    a {
+    a, p, li{
         color: var(--ft-light);
     }
-
+    a:visited{
+        color: inherit;
+    }
 }
 
 html.dark {
     background-color: var(--bg-dark);
     color: var(--ft-dark);
-    font-family: monospace;
-    line-height: 1.5em;
 
-    a {
+    a, p, li{
         color: var(--ft-dark);
     }
 }

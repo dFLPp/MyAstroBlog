@@ -1,6 +1,6 @@
 ---
-import { LINKS } from "../../config";
-import Base from "../../layouts/Base.astro";
+import { LINKS } from "../config";
+import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
 
@@ -10,7 +10,7 @@ export const getStaticPaths = async () => {
     return units.map(unit => {
         return {
             props: {unit},
-            params: {path: unit.slug}
+            params: {Units: unit.slug}
         }
     } )
 }
@@ -19,7 +19,7 @@ const { unit } = Astro.props;
 const { Content } = await unit.render();
 
 //@ts-ignore
-const link = LINKS.find((link) => link.name === "packs");
+const link = LINKS.find((link) => link.name === "home");
 ---
 
 <Base>
@@ -31,7 +31,7 @@ const link = LINKS.find((link) => link.name === "packs");
                     unit.data.prev === "start" ? (
                         <a href={link ? link.href : "#"}>Voltar ao início</a>
                     ) : (
-                        <a href={"/packs/" + unit.data.prev.slug}>Unit anterior</a>
+                        <a href={link.href + unit.data.prev.slug}>Unit anterior</a>
                     )
                 }
             </p>
@@ -43,7 +43,7 @@ const link = LINKS.find((link) => link.name === "packs");
                     unit.data.next === "end" ? (
                         <a href={link ? link.href : "#"}>Voltar ao início</a>
                     ) : (
-                        <a href={"/packs/" + unit.data.next.slug}>Próxima unit</a>
+                        <a href={link.href + unit.data.next.slug}>Próxima unit</a>
                     )
                 }
             </p>
