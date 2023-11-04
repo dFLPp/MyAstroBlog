@@ -23,99 +23,44 @@ const link = LINKS.find((link) => link.name === "home");
 ---
 
 <Base>
-    <div class="unitParentGrid">
-        <div class="div1"></div>
-        <article class="div2">
-            <p>
-                {
-                    unit.data.prev === "start" ? (
-                        <a href={link ? link.href : "#"}>Voltar ao início</a>
-                    ) : (
-                        <a href={link.href + unit.data.prev.slug}>Unit anterior</a>
-                    )
-                }
-            </p>
-            <section class="unitContainer">
-                <Content />
-            </section>
-            <p class="alignRight">
-                {
-                    unit.data.next === "end" ? (
-                        <a href={link ? link.href : "#"}>Voltar ao início</a>
-                    ) : (
-                        <a href={link.href + unit.data.next.slug}>Próxima unit</a>
-                    )
-                }
-            </p>
-        </article>
-        <div class="div3"></div>
-    </div>
+    <article>
+        <p>
+            {
+                unit.data.prev === "start" ? (
+                    <a href={link ? link.href : "#"}>Voltar ao início</a>
+                ) : (
+                    <a href={link ? link.href + unit.data.prev.slug : "#"}>Unit anterior</a>
+                )
+            }
+        </p>
+        <section>
+            <Content />
+        </section>
+        <p class="alignRight">
+            {
+                unit.data.next === "end" ? (
+                    <a href={link ? link.href : "#"}>Voltar ao início</a>
+                ) : (
+                    <a href={link ? link.href + unit.data.next.slug : "#"}>Próxima unit</a>
+                )
+            }
+        </p>
+    </article>
 </Base>
 
 <style>
-    .unitParentGrid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
+    article{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 1em;
     }
-
-    .unitContainer {
-        border: 2px dashed;
-        margin: 1em;
-        padding: 3em;
-        border-radius: 12px;
-        font-size: large;
-
-        h1 {
-            font-size: 2em;
-            line-height: 2em;
-        }
-
-        h2 {
-            font-size: 1.7em;
-            line-height: 1.7em;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            line-height: 1.5em;
-        }
-
-        h4 {
-            font-size: 1.3em;
-            line-height: 1.3em;
-        }
-
-        p {
-            font-size: 0.9em;
-            line-height: 1.5em;
-        }
-
-        ul {
-            list-style: circle;
-        }
-
-        a {
-            text-decoration: underline;
-        }
+    section{
+        display: flex;
+        flex-direction: column;
+        margin: 2em 4rem; 
     }
-
-    .div1 {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-    .div2 {
-        grid-area: 1 / 2 / 2 / 5;
-        a {
-            text-decoration: underline;
-        }
-    }
-    .div3 {
-        grid-area: 1 / 5 / 2 / 6;
-    }
-    .alignRight {
-        text-align: right;
+    a:visited{
+        color: inherit;
     }
 </style>
