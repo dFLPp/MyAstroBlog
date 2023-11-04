@@ -28,7 +28,7 @@ const link = LINKS.find((link) => link.name === "packs");
                     <li>
                         <a
                             href={
-                                link ? link.href + slug + "/" + unit.slug : "#"
+                                link ? link.href + unit.slug : "#"
                             }
                         >
                             {i + 1} - {unit.data.title}

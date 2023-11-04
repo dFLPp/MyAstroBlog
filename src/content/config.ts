@@ -27,6 +27,7 @@ const trails = defineCollection({
   })
 })
 
+
 export const collections = {
   'units': units,
   'packs': packs,

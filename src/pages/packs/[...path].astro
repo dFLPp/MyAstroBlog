@@ -1,38 +1,24 @@
 ---
-import { LINKS } from "../../../config";
-import type { CollectionEntry } from "astro:content";
-import Base from "../../../layouts/Base.astro";
-import { getEntries, getCollection } from "astro:content";
+import { LINKS } from "../../config";
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
 
-export type returnType = {
-    params: {
-        pack: string;
-        unit: string;
-    };
-    props: { unit: CollectionEntry<"units"> };
-};
 
 export const getStaticPaths = async () => {
-    const packs = await getCollection("packs");
 
-    const paths = await Promise.all(
-        packs.map(async (pack) => {
-            let relatedUnits = await getEntries(pack.data.ownUnits);
-            return relatedUnits.map((unit) => {
-                return {
-                    params: { pack: pack.slug, unit: unit.slug },
-                    props: { unit },
-                };
-            });
-        }),
-    );
+    const units = await getCollection("units");
+    return units.map(unit => {
+        return {
+            props: {unit},
+            params: {path: unit.slug}
+        }
+    } )
+}
 
-    // @ts-ignore
-    return [].concat(...paths);
-};
-
-const { unit, pack } = Astro.props;
+const { unit } = Astro.props;
 const { Content } = await unit.render();
+
+//@ts-ignore
 const link = LINKS.find((link) => link.name === "packs");
 ---
 
@@ -45,7 +31,7 @@ const link = LINKS.find((link) => link.name === "packs");
                     unit.data.prev === "start" ? (
                         <a href={link ? link.href : "#"}>Voltar ao início</a>
                     ) : (
-                        <a href={unit.data.prev.slug}>Unit anterior</a>
+                        <a href={"/packs/" + unit.data.prev.slug}>Unit anterior</a>
                     )
                 }
             </p>
@@ -57,7 +43,7 @@ const link = LINKS.find((link) => link.name === "packs");
                     unit.data.next === "end" ? (
                         <a href={link ? link.href : "#"}>Voltar ao início</a>
                     ) : (
-                        <a href={unit.data.next.slug}>Próxima unit</a>
+                        <a href={"/packs/" + unit.data.next.slug}>Próxima unit</a>
                     )
                 }
             </p>
